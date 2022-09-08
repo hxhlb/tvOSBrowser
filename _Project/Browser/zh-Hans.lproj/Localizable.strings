@@ -1,0 +1,53 @@
+/*
+  Localizable.strings
+  BananaATVBrowser
+
+  Created by 花心胡萝卜 on 9/7/22.
+  Copyright © 2022 High Caffeine Content. All rights reserved.
+*/
+"Usage Guide" = "使用说明";
+"Double press the touch area to switch between cursor & scroll mode.\nPress the touch area while in cursor mode to click.\nSingle tap to Menu button to Go Back, or Exit on root page.\nSingle tap the Play/Pause button to: Go Forward, Enter URL or Reload Page.\nDouble tap the Play/Pause to show the Advanced Menu with more options." = "双击触摸区域可在光标和滚动模式之间切换。\n在光标模式下按触摸区域可单击。\n单击“菜单”按钮可返回，或退出主页面。\n单击“播放/暂停”按钮可以进入菜单：前进、输入 URL 或重新加载页面。\n双击播放/暂停以显示包含更多选项的高级菜单。";
+"Don't Show This Again" = "别在给朕启奏了!";
+"Always Show On Launch" = "启动时始终显示";
+"Dismiss" = "朕知道了, 退下吧";
+"Advanced Menu" = "高级功能";
+"Hide Top Navigation bar" = "给朕把导航栏打入大牢";
+"Show Top Navigation bar" = "给朕把导航栏放出来";
+"Go To Home Page" = "起驾, 去主页玩玩";
+"Set Current Page As Home Page" = "来人啊, 给朕把当前这个小页面设置成主页";
+"Favorites" = "朕的秘密花园";
+"Delete a Favorite" = "从朕的秘密花园滚出去";
+"Select a Favorite to Delete" = "选一个小页面从朕的秘密花园滚出去";
+"Add Current Page to Favorites" = "来, 把当前的小页面收入朕的秘密花园";
+"Name New Favorite" = "给秘密花园重新赐名";
+"Save" = "给朕存起来";
+"History" = "朕的足迹";
+"Clear History" = "来人, 把朕的足迹打扫干净";
+"Switch To Mobile Mode" = "来人, 给朕切换到手机模式";
+"Switch To Desktop Mode" = "来人, 给朕切换到电脑模式";
+"Scale Pages to Fit" = "来人啊, 打这个页面一顿让他缩放的正好大小";
+"Stop Scaling Pages to Fit" = "好了, 不要打这个页面了, 让他恢复自己的大小";
+"Increase Font Size" = "来人, 赐山珍海味让它字体变大一点";
+"Decrease Font Size" = "来人, 揍他三十大板让它字体变小一点";
+"Clear Cache" = "来人, 揍他一顿让他把缓存清理干净";
+"Clear Cookies" = "来人, 揍他一顿让他把Cookies清理干净";
+"Enter URL or Search Terms" = "输入网址, 或者进行搜索";
+"Go To Website" = "给朕访问这个网址";
+"Search Google" = "给朕从谷歌上进行通缉";
+"Quick Menu" = "快捷菜单";
+"Go Forward" = "前进";
+"Reload Page" = "刷新";
+"Input URL or Search with Google" = "输入网址, 或者进行搜索";
+"Could Not Load Webpage" = "启奏陛下, 不能加载这个页面";
+"Google This Page" = "给朕从谷歌上通缉这个东西";
+"Enter a URL or Search" = "输入网址, 或者进行搜索";
+"Exit App?" = "退朝?";
+"Exit" = "退朝";
+"Lock Browser" = "锁定浏览器功能";
+
+"Info" = "启奏陛下";
+"OK" = "朕知道了";
+"Enabled Browser!\nApplication will exit!" = "启奏陛下, 已解锁浏览器功能!\n程序即将退出!";
+"Please Input the AppID!" = "请输入AppID!";
+" Loading ..." = " 加载中 ...";
+"%@ said:\n%@\n\nRate:%@\n----------------------------------------------" = "%@ 说:\n%@\n评分:%@\n----------------------------------------------";

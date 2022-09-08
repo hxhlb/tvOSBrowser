@@ -99,7 +99,7 @@ static UIImage *kPointerCursor() {
     
     //[self.view addSubview: self.webview];
     [self.browserContainerView addSubview: self.webview];
-
+    
     [self.webview setFrame:self.view.bounds];
     [self.webview setDelegate:self];
     [self.webview setLayoutMargins:UIEdgeInsetsZero];
@@ -144,7 +144,7 @@ static UIImage *kPointerCursor() {
     self.playPauseDoubleTapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handlePlayPauseDoubleTap:)];
     self.playPauseDoubleTapRecognizer.numberOfTapsRequired = 2;
     self.playPauseDoubleTapRecognizer.allowedPressTypes = @[[NSNumber numberWithInteger:UIPressTypePlayPause]];
-
+    
     [self.view addGestureRecognizer:self.playPauseDoubleTapRecognizer];
     
     self.cursorView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 64, 64)];
@@ -156,15 +156,15 @@ static UIImage *kPointerCursor() {
     
     // Spinner now also in Storyboard.
     /*loadingSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    loadingSpinner.center = CGPointMake(CGRectGetMidX([UIScreen mainScreen].bounds), CGRectGetMidY([UIScreen mainScreen].bounds));
-    loadingSpinner.tintColor = [UIColor blackColor];*/
+     loadingSpinner.center = CGPointMake(CGRectGetMidX([UIScreen mainScreen].bounds), CGRectGetMidY([UIScreen mainScreen].bounds));
+     loadingSpinner.tintColor = [UIColor blackColor];*/
     
     self.loadingSpinner.hidesWhenStopped = true;
     
     //[loadingSpinner startAnimating];
     //[self.view addSubview:loadingSpinner];
     //[self.browserContainerView addSubview:loadingSpinner]; // Now in Storyboard
-
+    
     //[self.view bringSubviewToFront:loadingSpinner];
     //ENABLE CURSOR MODE INITIALLY
     self.cursorMode = YES;
@@ -248,367 +248,378 @@ static UIImage *kPointerCursor() {
 -(void)showAdvancedMenu
 {
     UIAlertController *alertController = [UIAlertController
-                                          alertControllerWithTitle:@"Advanced Menu"
+                                          alertControllerWithTitle:NSLocalizedString(@"Advanced Menu", nil)
                                           message:@""
                                           preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *topBarAction;
     if(self.topMenuShowing == YES)
     {
-       topBarAction = [UIAlertAction
-                                         actionWithTitle:@"Hide Top Navigation bar"
-                                         style:UIAlertActionStyleDefault
-                                         handler:^(UIAlertAction *action)
-                                         {
-                                             [self hideTopNav];
-                                         }];
+        topBarAction = [UIAlertAction
+                        actionWithTitle:NSLocalizedString(@"Hide Top Navigation bar", nil)
+                        style:UIAlertActionStyleDefault
+                        handler:^(UIAlertAction *action)
+                        {
+            [self hideTopNav];
+        }];
     }
     else
     {
         topBarAction = [UIAlertAction
-                                       actionWithTitle:@"Show Top Navigation bar"
-                                       style:UIAlertActionStyleDefault
-                                       handler:^(UIAlertAction *action)
-                                       {
-                                           [self showTopNav];
-                                       }];
+                        actionWithTitle:NSLocalizedString(@"Show Top Navigation bar", nil)
+                        style:UIAlertActionStyleDefault
+                        handler:^(UIAlertAction *action)
+                        {
+            [self showTopNav];
+        }];
     }
     
     UIAlertAction *loadHomePageAction = [UIAlertAction
-                                         actionWithTitle:@"Go To Home Page"
+                                         actionWithTitle:NSLocalizedString(@"Go To Home Page", nil)
                                          style:UIAlertActionStyleDefault
                                          handler:^(UIAlertAction *action)
                                          {
-                                             [self loadHomePage];
-                                         }];
+        [self loadHomePage];
+    }];
     UIAlertAction *setHomePageAction = [UIAlertAction
-                                        actionWithTitle:@"Set Current Page As Home Page"
+                                        actionWithTitle:NSLocalizedString(@"Set Current Page As Home Page", nil)
                                         style:UIAlertActionStyleDefault
                                         handler:^(UIAlertAction *action)
                                         {
-                                            NSURLRequest *request = [self.webview request];
-                                            if (request != nil) {
-                                                if (![request.URL.absoluteString isEqual:@""]) {
-                                                    [[NSUserDefaults standardUserDefaults] setObject:request.URL.absoluteString forKey:@"homepage"];
-                                                }
-                                            }
-                                        }];
+        NSURLRequest *request = [self.webview request];
+        if (request != nil) {
+            if (![request.URL.absoluteString isEqual:@""]) {
+                [[NSUserDefaults standardUserDefaults] setObject:request.URL.absoluteString forKey:@"homepage"];
+            }
+        }
+    }];
     UIAlertAction *showHintsAction = [UIAlertAction
-                                      actionWithTitle:@"Usage Guide"
+                                      actionWithTitle:NSLocalizedString(@"Usage Guide", nil)
                                       style:UIAlertActionStyleDefault
                                       handler:^(UIAlertAction *action)
                                       {
-                                          [self showHintsAlert];
-                                      }];
+        [self showHintsAlert];
+    }];
     UIAlertAction *cancelAction = [UIAlertAction
                                    actionWithTitle:nil
                                    style:UIAlertActionStyleCancel
                                    handler:nil];
+    
     UIAlertAction *viewFavoritesAction = [UIAlertAction
-                                          actionWithTitle:@"Favorites"
+                                          actionWithTitle:NSLocalizedString(@"Favorites", nil)
                                           style:UIAlertActionStyleDefault
                                           handler:^(UIAlertAction *action)
                                           {
-                                              NSArray *indexableArray = [[NSUserDefaults standardUserDefaults] arrayForKey:@"FAVORITES"];
-                                              UIAlertController *historyAlertController = [UIAlertController
-                                                                                           alertControllerWithTitle:@"Favorites"
-                                                                                           message:@""
-                                                                                           preferredStyle:UIAlertControllerStyleAlert];
-                                              UIAlertAction *editFavoritesAction = [UIAlertAction
-                                                                                    actionWithTitle:@"Delete a Favorite"
-                                                                                    style:UIAlertActionStyleDestructive
-                                                                                    handler:^(UIAlertAction *action)
-                                                                                    {
-                                                                                        NSArray *editingIndexableArray = [[NSUserDefaults standardUserDefaults] arrayForKey:@"FAVORITES"];
-                                                                                        UIAlertController *editHistoryAlertController = [UIAlertController
-                                                                                                                                         alertControllerWithTitle:@"Delete a Favorite"
-                                                                                                                                         message:@"Select a Favorite to Delete"
-                                                                                                                                         preferredStyle:UIAlertControllerStyleAlert];
-                                                                                        if (editingIndexableArray != nil) {
-                                                                                            for (int i = 0; i < [editingIndexableArray count]; i++) {
-                                                                                                NSString *objectTitle = editingIndexableArray[i][1];
-                                                                                                NSString *objectSubtitle = editingIndexableArray[i][0];
-                                                                                                if (![[objectSubtitle stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString: @""]) {
-                                                                                                    if ([[objectTitle stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString: @""]) {
-                                                                                                        objectTitle = objectSubtitle;
-                                                                                                    }
-                                                                                                    UIAlertAction *favoriteItem = [UIAlertAction
-                                                                                                                                   actionWithTitle:objectTitle
-                                                                                                                                   style:UIAlertActionStyleDefault
-                                                                                                                                   handler:^(UIAlertAction *action)
-                                                                                                                                   {
-                                                                                                                                       NSMutableArray *editingArray = [editingIndexableArray mutableCopy];
-                                                                                                                                       [editingArray removeObjectAtIndex:i];
-                                                                                                                                       NSArray *toStoreArray = editingArray;
-                                                                                                                                       [[NSUserDefaults standardUserDefaults] setObject:toStoreArray forKey:@"FAVORITES"];
-                                                                                                                                       [[NSUserDefaults standardUserDefaults] synchronize];
-                                                                                                                                   }];
-                                                                                                    [editHistoryAlertController addAction:favoriteItem];
-                                                                                                }
-                                                                                            }
-                                                                                        }
-                                                                                        [editHistoryAlertController addAction:cancelAction];
-                                                                                        [self presentViewController:editHistoryAlertController animated:YES completion:nil];
-                                                                                        
-                                                                                    }];
-                                              UIAlertAction *addToFavoritesAction = [UIAlertAction
-                                                                                     actionWithTitle:@"Add Current Page to Favorites"
-                                                                                     style:UIAlertActionStyleDefault
-                                                                                     handler:^(UIAlertAction *action)
-                                                                                     {
-                                                                                         NSString *theTitle=[self.webview stringByEvaluatingJavaScriptFromString:@"document.title"];
-                                                                                         NSURLRequest *request = [self.webview request];
-                                                                                         NSString *currentURL = request.URL.absoluteString;
-                                                                                         UIAlertController *favoritesAddToController = [UIAlertController
-                                                                                                                                        alertControllerWithTitle:@"Name New Favorite"
-                                                                                                                                        message:currentURL
-                                                                                                                                        preferredStyle:UIAlertControllerStyleAlert];
-                                                                                         
-                                                                                         [favoritesAddToController addTextFieldWithConfigurationHandler:^(UITextField *textField)
-                                                                                          {
-                                                                                              textField.keyboardType = UIKeyboardTypeDefault;
-                                                                                              textField.placeholder = @"Name New Favorite";
-                                                                                              textField.text = theTitle;
-                                                                                              textField.textColor = kTextColor();
-                                                                                              [textField setReturnKeyType:UIReturnKeyDone];
-                                                                                              [textField addTarget:self
-                                                                                                            action:@selector(alertTextFieldShouldReturn:)
-                                                                                                  forControlEvents:UIControlEventEditingDidEnd];
-                                                                                              
-                                                                                          }];
-                                                                                         
-                                                                                         UIAlertAction *saveAction = [UIAlertAction
-                                                                                                                      actionWithTitle:@"Save"
-                                                                                                                      style:UIAlertActionStyleDestructive
-                                                                                                                      handler:^(UIAlertAction *action)
-                                                                                                                      {
-                                                                                                                          UITextField *titleTextField = favoritesAddToController.textFields[0];
-                                                                                                                          NSString *savedTitle = titleTextField.text;
-                                                                                                                          if ([savedTitle isEqualToString:@""]) {
-                                                                                                                              // Use raw URL if no title
-                                                                                                                              savedTitle = currentURL;
-                                                                                                                          }
-                                                                                                                          NSArray *toSaveItem = [NSArray arrayWithObjects:currentURL, savedTitle, nil];
-                                                                                                                          NSMutableArray *historyArray = [NSMutableArray arrayWithObjects:toSaveItem, nil];
-                                                                                                                          if ([[NSUserDefaults standardUserDefaults] arrayForKey:@"FAVORITES"] != nil) {
-                                                                                                                              historyArray = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"FAVORITES"] mutableCopy];
-                                                                                                                              [historyArray addObject:toSaveItem];
-                                                                                                                          }
-                                                                                                                          NSArray *toStoreArray = historyArray;
-                                                                                                                          [[NSUserDefaults standardUserDefaults] setObject:toStoreArray forKey:@"FAVORITES"];
-                                                                                                                          [[NSUserDefaults standardUserDefaults] synchronize];
-                                                                                                                          
-                                                                                                                      }];
-                                                                                         [favoritesAddToController addAction:saveAction];
-                                                                                         [favoritesAddToController addAction:cancelAction];
-                                                                                         [self presentViewController:favoritesAddToController animated:YES completion:nil];
-                                                                                         //UITextField *textFieldAlert = favoritesAddToController.textFields[0];
-                                                                                         //[textFieldAlert becomeFirstResponder];
-                                                                                         
-                                                                                     }];
-                                              if (indexableArray != nil) {
-                                                  for (int i = 0; i < [indexableArray count]; i++) {
-                                                      NSString *objectTitle = indexableArray[i][1];
-                                                      NSString *objectURL = indexableArray[i][0];
-                                                      if ([[objectTitle stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString: @""]) {
-                                                          // Use raw URL if no title
-                                                          objectTitle = objectURL;
-                                                      }
-                                                      UIAlertAction *favoriteItem = [UIAlertAction
-                                                                                     actionWithTitle:objectTitle
-                                                                                     style:UIAlertActionStyleDefault
-                                                                                     handler:^(UIAlertAction *action)
-                                                                                     {
-                                                                                         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: objectURL]]];
-                                                                                     }];
-                                                      [historyAlertController addAction:favoriteItem];
-                                                  }
-                                              }
-                                              if ([[NSUserDefaults standardUserDefaults] arrayForKey:@"FAVORITES"] != nil) {
-                                                  if ([[[NSUserDefaults standardUserDefaults] arrayForKey:@"FAVORITES"] count] > 0) {
-                                                      [historyAlertController addAction:editFavoritesAction];
-                                                  }
-                                              }
-                                              [historyAlertController addAction:addToFavoritesAction];
-                                              [historyAlertController addAction:cancelAction];
-                                              [self presentViewController:historyAlertController animated:YES completion:nil];
-                                          }];
-    UIAlertAction *viewHistoryAction = [UIAlertAction
-                                        actionWithTitle:@"History"
-                                        style:UIAlertActionStyleDefault
-                                        handler:^(UIAlertAction *action)
-                                        {
-                                            NSArray *indexableArray = [[NSUserDefaults standardUserDefaults] arrayForKey:@"HISTORY"];
-                                            UIAlertController *historyAlertController = [UIAlertController
-                                                                                         alertControllerWithTitle:@"History"
-                                                                                         message:@""
-                                                                                         preferredStyle:UIAlertControllerStyleAlert];
-                                            UIAlertAction *clearHistoryAction = [UIAlertAction
-                                                                                 actionWithTitle:@"Clear History"
-                                                                                 style:UIAlertActionStyleDestructive
-                                                                                 handler:^(UIAlertAction *action)
-                                                                                 {
-                                                                                     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"HISTORY"];
-                                                                                     [[NSUserDefaults standardUserDefaults] synchronize];
-                                                                                     
-                                                                                 }];
-                                            if ([[NSUserDefaults standardUserDefaults] arrayForKey:@"HISTORY"] != nil) {
-                                                [historyAlertController addAction:clearHistoryAction];
-                                            }
-                                            for (int i = 0; i < [indexableArray count]; i++) {
-                                                NSString *objectTitle = indexableArray[i][1];
-                                                NSString *objectSubtitle = indexableArray[i][0];
-                                                if (![[objectSubtitle stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString: @""]) {
-                                                    if ([[objectTitle stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString: @""]) {
-                                                        objectTitle = objectSubtitle;
-                                                    }
-                                                    else {
-                                                        objectTitle = [NSString stringWithFormat:@"%@ - %@",objectTitle,objectSubtitle ];
-                                                    }
-                                                    UIAlertAction *historyItem = [UIAlertAction
-                                                                                  actionWithTitle:objectTitle
-                                                                                  style:UIAlertActionStyleDefault
-                                                                                  handler:^(UIAlertAction *action)
-                                                                                  {
-                                                                                      [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: indexableArray[i][0]]]];
-                                                                                  }];
-                                                    [historyAlertController addAction:historyItem];
-                                                }
-                                            }
-                                            [historyAlertController addAction:cancelAction];
-                                            [self presentViewController:historyAlertController animated:YES completion:nil];
-                                        }];
-    UIAlertAction *mobileModeAction = [UIAlertAction
-                                       actionWithTitle:@"Switch To Mobile Mode"
-                                       style:UIAlertActionStyleDefault
-                                       handler:^(UIAlertAction *action)
-                                       {
-                                           NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0 Mobile/15E148 Safari/604.1", @"UserAgent", nil];
-                                           [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
-                                           [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"MobileMode"];
-                                           [[NSUserDefaults standardUserDefaults] synchronize];
-                                           NSURLRequest *request = [self.webview request];
-                                           if (request != nil) {
-                                               if (![request.URL.absoluteString isEqual:@""]) {
-                                                   [[NSUserDefaults standardUserDefaults] setObject:request.URL.absoluteString forKey:@"savedURLtoReopen"];
-                                                   [[NSUserDefaults standardUserDefaults] synchronize];
-                                               }
-                                           }
-                                           NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-                                           for (NSHTTPCookie *cookie in [storage cookies]) {
-                                               [storage deleteCookie:cookie];
-                                           }
-                                           [[NSURLCache sharedURLCache] removeAllCachedResponses];
-                                           [[NSUserDefaults standardUserDefaults] synchronize];
-                                           [[NSURLSession sharedSession] resetWithCompletionHandler:^{
-                                               dispatch_sync(dispatch_get_main_queue(), ^{
-                                                   [self.webview removeFromSuperview];
-                                                   [self initWebView];
-                                                   [self.view bringSubviewToFront:self.cursorView];
-                                                   //[self.view bringSubviewToFront:self->loadingSpinner];
-                                                   [self webViewDidAppear];
-                                                   
-                                               });
-                                           }];
-                                       }];
-    UIAlertAction *desktopModeAction = [UIAlertAction
-                                        actionWithTitle:@"Switch To Desktop Mode"
-                                        style:UIAlertActionStyleDefault
-                                        handler:^(UIAlertAction *action)
-                                        {
-                                            NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0 Safari/605.1.15", @"UserAgent", nil];
-                                            [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
-                                            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"MobileMode"];
-                                            [[NSUserDefaults standardUserDefaults] synchronize];
-                                            NSURLRequest *request = [self.webview request];
-                                            if (request != nil) {
-                                                if (![request.URL.absoluteString isEqual:@""]) {
-                                                    [[NSUserDefaults standardUserDefaults] setObject:request.URL.absoluteString forKey:@"savedURLtoReopen"];
-                                                    [[NSUserDefaults standardUserDefaults] synchronize];
-                                                }
-                                            }
-                                            NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-                                            for (NSHTTPCookie *cookie in [storage cookies]) {
-                                                [storage deleteCookie:cookie];
-                                            }
-                                            [[NSURLCache sharedURLCache] removeAllCachedResponses];
-                                            [[NSUserDefaults standardUserDefaults] synchronize];
-                                            [[NSURLSession sharedSession] resetWithCompletionHandler:^{
-                                                dispatch_sync(dispatch_get_main_queue(), ^{
-                                                    [self.webview removeFromSuperview];
-                                                    [self initWebView];
-                                                    [self.view bringSubviewToFront:self.cursorView];
-                                                    //[self.view bringSubviewToFront:self->loadingSpinner];
-                                                    [self webViewDidAppear];
-                                                    
-                                                });
-                                            }];
-                                        }];
-    UIAlertAction *scalePageToFitAction = [UIAlertAction
-                                           actionWithTitle:@"Scale Pages to Fit"
-                                           style:UIAlertActionStyleDefault
-                                           handler:^(UIAlertAction *action)
-                                           {
-                                               [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ScalePagesToFit"];
-                                               [[NSUserDefaults standardUserDefaults] synchronize];
-                                               [self.webview setScalesPageToFit:YES];
-                                               [self.webview setContentMode:UIViewContentModeScaleAspectFit];
-                                               [self.webview reload];
-                                           }];
-    UIAlertAction *stopScalePageToFitAction = [UIAlertAction
-                                               actionWithTitle:@"Stop Scaling Pages to Fit"
+        NSArray *indexableArray = [[NSUserDefaults standardUserDefaults] arrayForKey:@"FAVORITES"];
+        UIAlertController *historyAlertController = [UIAlertController
+                                                     alertControllerWithTitle:NSLocalizedString(@"Favorites", nil)
+                                                     message:@""
+                                                     preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *editFavoritesAction = [UIAlertAction
+                                              actionWithTitle:NSLocalizedString(@"Delete a Favorite", nil)
+                                              style:UIAlertActionStyleDestructive
+                                              handler:^(UIAlertAction *action)
+                                              {
+            NSArray *editingIndexableArray = [[NSUserDefaults standardUserDefaults] arrayForKey:@"FAVORITES"];
+            UIAlertController *editHistoryAlertController = [UIAlertController
+                                                             alertControllerWithTitle:@"Delete a Favorite"
+                                                             message:NSLocalizedString(@"Select a Favorite to Delete", nil)
+                                                             preferredStyle:UIAlertControllerStyleAlert];
+            if (editingIndexableArray != nil) {
+                for (int i = 0; i < [editingIndexableArray count]; i++) {
+                    NSString *objectTitle = editingIndexableArray[i][1];
+                    NSString *objectSubtitle = editingIndexableArray[i][0];
+                    if (![[objectSubtitle stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString: @""]) {
+                        if ([[objectTitle stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString: @""]) {
+                            objectTitle = objectSubtitle;
+                        }
+                        UIAlertAction *favoriteItem = [UIAlertAction
+                                                       actionWithTitle:objectTitle
+                                                       style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction *action)
+                                                       {
+                            NSMutableArray *editingArray = [editingIndexableArray mutableCopy];
+                            [editingArray removeObjectAtIndex:i];
+                            NSArray *toStoreArray = editingArray;
+                            [[NSUserDefaults standardUserDefaults] setObject:toStoreArray forKey:@"FAVORITES"];
+                            [[NSUserDefaults standardUserDefaults] synchronize];
+                        }];
+                        [editHistoryAlertController addAction:favoriteItem];
+                    }
+                }
+            }
+            [editHistoryAlertController addAction:cancelAction];
+            [self presentViewController:editHistoryAlertController animated:YES completion:nil];
+            
+        }];
+        UIAlertAction *addToFavoritesAction = [UIAlertAction
+                                               actionWithTitle:NSLocalizedString(@"Add Current Page to Favorites", nil)
                                                style:UIAlertActionStyleDefault
                                                handler:^(UIAlertAction *action)
                                                {
-                                                   [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"ScalePagesToFit"];
-                                                   [[NSUserDefaults standardUserDefaults] synchronize];
-                                                   [self.webview setScalesPageToFit:NO];
-                                                   [self.webview reload];
-                                               }];
-    
-    UIAlertAction *increaseFontSizeAction = [UIAlertAction
-                                             actionWithTitle:@"Increase Font Size"
-                                             style:UIAlertActionStyleDefault
-                                             handler:^(UIAlertAction *action)
-                                             {
-                                                 self.textFontSize += 5;
-                                                 [self updateTextFontSize];
-                                             }];
-    
-    UIAlertAction *decreaseFontSizeAction = [UIAlertAction
-                                             actionWithTitle:@"Decrease Font Size"
-                                             style:UIAlertActionStyleDefault
-                                             handler:^(UIAlertAction *action)
-                                             {
-                                                 self.textFontSize -= 5;
-                                                 [self updateTextFontSize];
-                                             }];
-    
-    UIAlertAction *clearCacheAction = [UIAlertAction
-                                       actionWithTitle:@"Clear Cache"
-                                       style:UIAlertActionStyleDestructive
-                                       handler:^(UIAlertAction *action)
-                                       {
-                                           [[NSURLCache sharedURLCache] removeAllCachedResponses];
-                                           [[NSUserDefaults standardUserDefaults] synchronize];
-                                           self.previousURL = @"";
-                                           [self.webview reload];
-                                           
-                                       }];
-    UIAlertAction *clearCookiesAction = [UIAlertAction
-                                         actionWithTitle:@"Clear Cookies"
+            NSString *theTitle=[self.webview stringByEvaluatingJavaScriptFromString:@"document.title"];
+            NSURLRequest *request = [self.webview request];
+            NSString *currentURL = request.URL.absoluteString;
+            UIAlertController *favoritesAddToController = [UIAlertController
+                                                           alertControllerWithTitle:NSLocalizedString(@"Name New Favorite", nil)
+                                                           message:currentURL
+                                                           preferredStyle:UIAlertControllerStyleAlert];
+            
+            [favoritesAddToController addTextFieldWithConfigurationHandler:^(UITextField *textField)
+             {
+                textField.keyboardType = UIKeyboardTypeDefault;
+                textField.placeholder = NSLocalizedString(@"Name New Favorite", nil);
+                textField.text = theTitle;
+                textField.textColor = kTextColor();
+                [textField setReturnKeyType:UIReturnKeyDone];
+                [textField addTarget:self
+                              action:@selector(alertTextFieldShouldReturn:)
+                    forControlEvents:UIControlEventEditingDidEnd];
+                
+            }];
+            
+            UIAlertAction *saveAction = [UIAlertAction
+                                         actionWithTitle:NSLocalizedString(@"Save", nil)
                                          style:UIAlertActionStyleDestructive
                                          handler:^(UIAlertAction *action)
                                          {
-                                             NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-                                             for (NSHTTPCookie *cookie in [storage cookies]) {
-                                                 [storage deleteCookie:cookie];
-                                             }
-                                             [[NSUserDefaults standardUserDefaults] synchronize];
-                                             self.previousURL = @"";
-                                             [self.webview reload];
-                                             
-                                         }];
+                UITextField *titleTextField = favoritesAddToController.textFields[0];
+                NSString *savedTitle = titleTextField.text;
+                if ([savedTitle isEqualToString:@""]) {
+                    // Use raw URL if no title
+                    savedTitle = currentURL;
+                }
+                NSArray *toSaveItem = [NSArray arrayWithObjects:currentURL, savedTitle, nil];
+                NSMutableArray *historyArray = [NSMutableArray arrayWithObjects:toSaveItem, nil];
+                if ([[NSUserDefaults standardUserDefaults] arrayForKey:@"FAVORITES"] != nil) {
+                    historyArray = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"FAVORITES"] mutableCopy];
+                    [historyArray addObject:toSaveItem];
+                }
+                NSArray *toStoreArray = historyArray;
+                [[NSUserDefaults standardUserDefaults] setObject:toStoreArray forKey:@"FAVORITES"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                
+            }];
+            [favoritesAddToController addAction:saveAction];
+            [favoritesAddToController addAction:cancelAction];
+            [self presentViewController:favoritesAddToController animated:YES completion:nil];
+            //UITextField *textFieldAlert = favoritesAddToController.textFields[0];
+            //[textFieldAlert becomeFirstResponder];
+            
+        }];
+        if (indexableArray != nil) {
+            for (int i = 0; i < [indexableArray count]; i++) {
+                NSString *objectTitle = indexableArray[i][1];
+                NSString *objectURL = indexableArray[i][0];
+                if ([[objectTitle stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString: @""]) {
+                    // Use raw URL if no title
+                    objectTitle = objectURL;
+                }
+                UIAlertAction *favoriteItem = [UIAlertAction
+                                               actionWithTitle:objectTitle
+                                               style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction *action)
+                                               {
+                    [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: objectURL]]];
+                }];
+                [historyAlertController addAction:favoriteItem];
+            }
+        }
+        if ([[NSUserDefaults standardUserDefaults] arrayForKey:@"FAVORITES"] != nil) {
+            if ([[[NSUserDefaults standardUserDefaults] arrayForKey:@"FAVORITES"] count] > 0) {
+                [historyAlertController addAction:editFavoritesAction];
+            }
+        }
+        [historyAlertController addAction:addToFavoritesAction];
+        [historyAlertController addAction:cancelAction];
+        [self presentViewController:historyAlertController animated:YES completion:nil];
+    }];
+    UIAlertAction *viewHistoryAction = [UIAlertAction
+                                        actionWithTitle:NSLocalizedString(@"History", nil)
+                                        style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction *action)
+                                        {
+        NSArray *indexableArray = [[NSUserDefaults standardUserDefaults] arrayForKey:@"HISTORY"];
+        UIAlertController *historyAlertController = [UIAlertController
+                                                     alertControllerWithTitle:NSLocalizedString(@"History", nil)
+                                                     message:@""
+                                                     preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *clearHistoryAction = [UIAlertAction
+                                             actionWithTitle:NSLocalizedString(@"Clear History", nil)
+                                             style:UIAlertActionStyleDestructive
+                                             handler:^(UIAlertAction *action)
+                                             {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"HISTORY"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+        }];
+        if ([[NSUserDefaults standardUserDefaults] arrayForKey:@"HISTORY"] != nil) {
+            [historyAlertController addAction:clearHistoryAction];
+        }
+        for (int i = 0; i < [indexableArray count]; i++) {
+            NSString *objectTitle = indexableArray[i][1];
+            NSString *objectSubtitle = indexableArray[i][0];
+            if (![[objectSubtitle stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString: @""]) {
+                if ([[objectTitle stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString: @""]) {
+                    objectTitle = objectSubtitle;
+                }
+                else {
+                    objectTitle = [NSString stringWithFormat:@"%@ - %@",objectTitle,objectSubtitle ];
+                }
+                UIAlertAction *historyItem = [UIAlertAction
+                                              actionWithTitle:objectTitle
+                                              style:UIAlertActionStyleDefault
+                                              handler:^(UIAlertAction *action)
+                                              {
+                    [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString: indexableArray[i][0]]]];
+                }];
+                [historyAlertController addAction:historyItem];
+            }
+        }
+        [historyAlertController addAction:cancelAction];
+        [self presentViewController:historyAlertController animated:YES completion:nil];
+    }];
+    UIAlertAction *mobileModeAction = [UIAlertAction
+                                       actionWithTitle:NSLocalizedString(@"Switch To Mobile Mode", nil)
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction *action)
+                                       {
+        NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0 Mobile/15E148 Safari/604.1", @"UserAgent", nil];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"MobileMode"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        NSURLRequest *request = [self.webview request];
+        if (request != nil) {
+            if (![request.URL.absoluteString isEqual:@""]) {
+                [[NSUserDefaults standardUserDefaults] setObject:request.URL.absoluteString forKey:@"savedURLtoReopen"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+            }
+        }
+        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        for (NSHTTPCookie *cookie in [storage cookies]) {
+            [storage deleteCookie:cookie];
+        }
+        [[NSURLCache sharedURLCache] removeAllCachedResponses];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [[NSURLSession sharedSession] resetWithCompletionHandler:^{
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self.webview removeFromSuperview];
+                [self initWebView];
+                [self.view bringSubviewToFront:self.cursorView];
+                //[self.view bringSubviewToFront:self->loadingSpinner];
+                [self webViewDidAppear];
+                
+            });
+        }];
+    }];
+    UIAlertAction *desktopModeAction = [UIAlertAction
+                                        actionWithTitle:NSLocalizedString(@"Switch To Desktop Mode", nil)
+                                        style:UIAlertActionStyleDefault
+                                        handler:^(UIAlertAction *action)
+                                        {
+        NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0 Safari/605.1.15", @"UserAgent", nil];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"MobileMode"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        NSURLRequest *request = [self.webview request];
+        if (request != nil) {
+            if (![request.URL.absoluteString isEqual:@""]) {
+                [[NSUserDefaults standardUserDefaults] setObject:request.URL.absoluteString forKey:@"savedURLtoReopen"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+            }
+        }
+        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        for (NSHTTPCookie *cookie in [storage cookies]) {
+            [storage deleteCookie:cookie];
+        }
+        [[NSURLCache sharedURLCache] removeAllCachedResponses];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [[NSURLSession sharedSession] resetWithCompletionHandler:^{
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self.webview removeFromSuperview];
+                [self initWebView];
+                [self.view bringSubviewToFront:self.cursorView];
+                //[self.view bringSubviewToFront:self->loadingSpinner];
+                [self webViewDidAppear];
+                
+            });
+        }];
+    }];
+    UIAlertAction *scalePageToFitAction = [UIAlertAction
+                                           actionWithTitle:NSLocalizedString(@"Scale Pages to Fit", nil)
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action)
+                                           {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ScalePagesToFit"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self.webview setScalesPageToFit:YES];
+        [self.webview setContentMode:UIViewContentModeScaleAspectFit];
+        [self.webview reload];
+    }];
+    UIAlertAction *stopScalePageToFitAction = [UIAlertAction
+                                               actionWithTitle:NSLocalizedString(@"Stop Scaling Pages to Fit", nil)
+                                               style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction *action)
+                                               {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"ScalePagesToFit"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self.webview setScalesPageToFit:NO];
+        [self.webview reload];
+    }];
+    
+    UIAlertAction *increaseFontSizeAction = [UIAlertAction
+                                             actionWithTitle:NSLocalizedString(@"Increase Font Size", nil)
+                                             style:UIAlertActionStyleDefault
+                                             handler:^(UIAlertAction *action)
+                                             {
+        self.textFontSize += 5;
+        [self updateTextFontSize];
+    }];
+    
+    UIAlertAction *decreaseFontSizeAction = [UIAlertAction
+                                             actionWithTitle:NSLocalizedString(@"Decrease Font Size", nil)
+                                             style:UIAlertActionStyleDefault
+                                             handler:^(UIAlertAction *action)
+                                             {
+        self.textFontSize -= 5;
+        [self updateTextFontSize];
+    }];
+    
+    UIAlertAction *clearCacheAction = [UIAlertAction
+                                       actionWithTitle:NSLocalizedString(@"Clear Cache", nil)
+                                       style:UIAlertActionStyleDestructive
+                                       handler:^(UIAlertAction *action)
+                                       {
+        [[NSURLCache sharedURLCache] removeAllCachedResponses];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        self.previousURL = @"";
+        [self.webview reload];
+        
+    }];
+    UIAlertAction *clearCookiesAction = [UIAlertAction
+                                         actionWithTitle:NSLocalizedString(@"Clear Cookies", nil)
+                                         style:UIAlertActionStyleDestructive
+                                         handler:^(UIAlertAction *action)
+                                         {
+        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        for (NSHTTPCookie *cookie in [storage cookies]) {
+            [storage deleteCookie:cookie];
+        }
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        self.previousURL = @"";
+        [self.webview reload];
+        
+    }];
+    
+    UIAlertAction *lockAction = [UIAlertAction
+                                 actionWithTitle:NSLocalizedString(@"Lock Browser", nil)
+                                 style:UIAlertActionStyleDestructive
+                                 handler:^(UIAlertAction *action)
+                                 {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"unlockerBrowser"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        exit(0);
+    }];
     
     
     /*
@@ -627,7 +638,8 @@ static UIImage *kPointerCursor() {
      }
      }
      */
-
+    
+    [alertController addAction:lockAction];
     [alertController addAction:viewFavoritesAction];
     [alertController addAction:viewHistoryAction];
     [alertController addAction:loadHomePageAction];
@@ -670,82 +682,82 @@ static UIImage *kPointerCursor() {
 -(void)showInputURLorSearchGoogle
 {
     UIAlertController *alertController2 = [UIAlertController
-                                           alertControllerWithTitle:@"Enter URL or Search Terms"
+                                           alertControllerWithTitle:NSLocalizedString(@"Enter URL or Search Terms", nil)
                                            message:@""
                                            preferredStyle:UIAlertControllerStyleAlert];
     
     [alertController2 addTextFieldWithConfigurationHandler:^(UITextField *textField)
      {
-         textField.keyboardType = UIKeyboardTypeURL;
-         textField.placeholder = @"Enter URL or Search Terms";
-         textField.textColor = kTextColor();
-         [textField setReturnKeyType:UIReturnKeyDone];
-         [textField addTarget:self
-                       action:@selector(alertTextFieldShouldReturn:)
-             forControlEvents:UIControlEventEditingDidEnd];
-         
-     }];
+        textField.keyboardType = UIKeyboardTypeURL;
+        textField.placeholder = NSLocalizedString(@"Enter URL or Search Terms", nil);
+        textField.textColor = kTextColor();
+        [textField setReturnKeyType:UIReturnKeyDone];
+        [textField addTarget:self
+                      action:@selector(alertTextFieldShouldReturn:)
+            forControlEvents:UIControlEventEditingDidEnd];
+        
+    }];
     
     
     UIAlertAction *goAction = [UIAlertAction
-                               actionWithTitle:@"Go To Website"
+                               actionWithTitle:NSLocalizedString(@"Go To Website", nil)
                                style:UIAlertActionStyleDefault
                                handler:^(UIAlertAction *action)
                                {
-                                   UITextField *urltextfield = alertController2.textFields[0];
-                                   NSString *toMod = urltextfield.text;
-                                   /*
-                                    if ([toMod containsString:@" "] || ![temporaryURL containsString:@"."]) {
-                                    toMod = [toMod stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-                                    toMod = [toMod stringByReplacingOccurrencesOfString:@"." withString:@"+"];
-                                    toMod = [toMod stringByReplacingOccurrencesOfString:@"++" withString:@"+"];
-                                    toMod = [toMod stringByReplacingOccurrencesOfString:@"++" withString:@"+"];
-                                    toMod = [toMod stringByReplacingOccurrencesOfString:@"++" withString:@"+"];
-                                    toMod = [toMod stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-                                    if (toMod != nil) {
-                                    [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/search?q=%@", toMod]]]];
-                                    }
-                                    else {
-                                    [self requestURLorSearchInput];
-                                    }
-                                    }
-                                    else {
-                                    */
-                                   if (![toMod isEqualToString:@""]) {
-                                       if ([toMod containsString:@"http://"] || [toMod containsString:@"https://"]) {
-                                           [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", toMod]]]];
-                                       }
-                                       else {
-                                           [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", toMod]]]];
-                                       }
-                                   }
-                                   else {
-                                       [self requestURLorSearchInput];
-                                   }
-                                   //}
-                                   
-                               }];
+        UITextField *urltextfield = alertController2.textFields[0];
+        NSString *toMod = urltextfield.text;
+        /*
+         if ([toMod containsString:@" "] || ![temporaryURL containsString:@"."]) {
+         toMod = [toMod stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+         toMod = [toMod stringByReplacingOccurrencesOfString:@"." withString:@"+"];
+         toMod = [toMod stringByReplacingOccurrencesOfString:@"++" withString:@"+"];
+         toMod = [toMod stringByReplacingOccurrencesOfString:@"++" withString:@"+"];
+         toMod = [toMod stringByReplacingOccurrencesOfString:@"++" withString:@"+"];
+         toMod = [toMod stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+         if (toMod != nil) {
+         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/search?q=%@", toMod]]]];
+         }
+         else {
+         [self requestURLorSearchInput];
+         }
+         }
+         else {
+         */
+        if (![toMod isEqualToString:@""]) {
+            if ([toMod containsString:@"http://"] || [toMod containsString:@"https://"]) {
+                [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", toMod]]]];
+            }
+            else {
+                [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@", toMod]]]];
+            }
+        }
+        else {
+            [self requestURLorSearchInput];
+        }
+        //}
+        
+    }];
     
     UIAlertAction *searchAction = [UIAlertAction
-                                   actionWithTitle:@"Search Google"
+                                   actionWithTitle:NSLocalizedString(@"Search Google", nil)
                                    style:UIAlertActionStyleDefault
                                    handler:^(UIAlertAction *action)
                                    {
-                                       UITextField *urltextfield = alertController2.textFields[0];
-                                       NSString *toMod = urltextfield.text;
-                                       toMod = [toMod stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-                                       toMod = [toMod stringByReplacingOccurrencesOfString:@"." withString:@"+"];
-                                       toMod = [toMod stringByReplacingOccurrencesOfString:@"++" withString:@"+"];
-                                       toMod = [toMod stringByReplacingOccurrencesOfString:@"++" withString:@"+"];
-                                       toMod = [toMod stringByReplacingOccurrencesOfString:@"++" withString:@"+"];
-                                       toMod = [toMod stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-                                       if (toMod != nil) {
-                                           [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/search?q=%@", toMod]]]];
-                                       }
-                                       else {
-                                           [self requestURLorSearchInput];
-                                       }
-                                   }];
+        UITextField *urltextfield = alertController2.textFields[0];
+        NSString *toMod = urltextfield.text;
+        toMod = [toMod stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+        toMod = [toMod stringByReplacingOccurrencesOfString:@"." withString:@"+"];
+        toMod = [toMod stringByReplacingOccurrencesOfString:@"++" withString:@"+"];
+        toMod = [toMod stringByReplacingOccurrencesOfString:@"++" withString:@"+"];
+        toMod = [toMod stringByReplacingOccurrencesOfString:@"++" withString:@"+"];
+        toMod = [toMod stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        if (toMod != nil) {
+            [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/search?q=%@", toMod]]]];
+        }
+        else {
+            [self requestURLorSearchInput];
+        }
+    }];
     
     UIAlertAction *cancelAction = [UIAlertAction
                                    actionWithTitle:nil
@@ -759,7 +771,7 @@ static UIImage *kPointerCursor() {
     [self presentViewController:alertController2 animated:YES completion:nil];
     
     NSURLRequest *request = [self.webview request];
-
+    
     
     if (request == nil) {
         UITextField *loginTextField = alertController2.textFields[0];
@@ -779,35 +791,28 @@ static UIImage *kPointerCursor() {
 {
     
     UIAlertController *alertController = [UIAlertController
-                                          alertControllerWithTitle:@"Quick Menu"
+                                          alertControllerWithTitle:NSLocalizedString(@"Quick Menu", nil)
                                           message:@""
                                           preferredStyle:UIAlertControllerStyleAlert];
     
     
-    
-    
-    
-    
-    
-    
-    
     UIAlertAction *forwardAction = [UIAlertAction
-                                   actionWithTitle:@"Go Forward"
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction *action)
-                                   {
-                                       [self.webview goForward];
-                                   }];
+                                    actionWithTitle:NSLocalizedString(@"Go Forward", nil)
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction *action)
+                                    {
+        [self.webview goForward];
+    }];
     
     
     UIAlertAction *reloadAction = [UIAlertAction
-                                   actionWithTitle:@"Reload Page"
+                                   actionWithTitle:NSLocalizedString(@"Reload Page", nil)
                                    style:UIAlertActionStyleDefault
                                    handler:^(UIAlertAction *action)
                                    {
-                                       self.previousURL = @"";
-                                       [self.webview reload];
-                                   }];
+        self.previousURL = @"";
+        [self.webview reload];
+    }];
     
     
     UIAlertAction *cancelAction = [UIAlertAction
@@ -816,14 +821,14 @@ static UIImage *kPointerCursor() {
                                    handler:nil];
     
     UIAlertAction *inputAction = [UIAlertAction
-                                  actionWithTitle:@"Input URL or Search with Google"
+                                  actionWithTitle:NSLocalizedString(@"Input URL or Search with Google", nil)
                                   style:UIAlertActionStyleDefault
                                   handler:^(UIAlertAction *action)
                                   {
-                                      
-                                      [self showInputURLorSearchGoogle];
-                                      
-                                  }];
+        
+        [self showInputURLorSearchGoogle];
+        
+    }];
     
     
     if([self.webview canGoForward])
@@ -840,10 +845,6 @@ static UIImage *kPointerCursor() {
     [alertController addAction:cancelAction];
     
     [self presentViewController:alertController animated:YES completion:nil];
-    
-    
-    
-    
     
     
 }
@@ -894,45 +895,45 @@ static UIImage *kPointerCursor() {
     [self.loadingSpinner stopAnimating];
     if (![[NSString stringWithFormat:@"%lid", (long)error.code] containsString:@"999"] && ![[NSString stringWithFormat:@"%lid", (long)error.code] containsString:@"204"]) {
         UIAlertController *alertController = [UIAlertController
-                                              alertControllerWithTitle:@"Could Not Load Webpage"
+                                              alertControllerWithTitle:NSLocalizedString(@"Could Not Load Webpage", nil)
                                               message:[error localizedDescription]
                                               preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *searchAction = [UIAlertAction
-                                       actionWithTitle:@"Google This Page"
+                                       actionWithTitle:NSLocalizedString(@"Google This Page", nil)
                                        style:UIAlertActionStyleDefault
                                        handler:^(UIAlertAction *action)
                                        {
-                                           if (self.requestURL != nil) {
-                                               if ([self.requestURL length] > 1) {
-                                                   NSString *lastChar = [self.requestURL substringFromIndex: [self.requestURL length] - 1];
-                                                   if ([lastChar isEqualToString:@"/"]) {
-                                                       NSString *newString = [self.requestURL substringToIndex:[self.requestURL length]-1];
-                                                       self.requestURL = newString;
-                                                   }
-                                               }
-                                               self.requestURL = [self.requestURL stringByReplacingOccurrencesOfString:@"http://" withString:@""];
-                                               self.requestURL = [self.requestURL stringByReplacingOccurrencesOfString:@"https://" withString:@""];
-                                               self.requestURL = [self.requestURL stringByReplacingOccurrencesOfString:@"www." withString:@""];
-                                               [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/search?q=%@", self.requestURL]]]];
-                                           }
-                                           
-                                       }];
+            if (self.requestURL != nil) {
+                if ([self.requestURL length] > 1) {
+                    NSString *lastChar = [self.requestURL substringFromIndex: [self.requestURL length] - 1];
+                    if ([lastChar isEqualToString:@"/"]) {
+                        NSString *newString = [self.requestURL substringToIndex:[self.requestURL length]-1];
+                        self.requestURL = newString;
+                    }
+                }
+                self.requestURL = [self.requestURL stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+                self.requestURL = [self.requestURL stringByReplacingOccurrencesOfString:@"https://" withString:@""];
+                self.requestURL = [self.requestURL stringByReplacingOccurrencesOfString:@"www." withString:@""];
+                [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://www.google.com/search?q=%@", self.requestURL]]]];
+            }
+            
+        }];
         UIAlertAction *reloadAction = [UIAlertAction
-                                       actionWithTitle:@"Reload Page"
+                                       actionWithTitle:NSLocalizedString(@"Reload Page", nil)
                                        style:UIAlertActionStyleDefault
                                        handler:^(UIAlertAction *action)
                                        {
-                                           self.previousURL = @"";
-                                           [self.webview reload];
-                                       }];
+            self.previousURL = @"";
+            [self.webview reload];
+        }];
         UIAlertAction *newurlAction = [UIAlertAction
-                                       actionWithTitle:@"Enter a URL or Search"
+                                       actionWithTitle:NSLocalizedString(@"Enter a URL or Search", nil)
                                        style:UIAlertActionStyleDefault
                                        handler:^(UIAlertAction *action)
                                        {
-                                           [self requestURLorSearchInput];
-                                       }];
+            [self requestURLorSearchInput];
+        }];
         UIAlertAction *cancelAction = [UIAlertAction
                                        actionWithTitle:nil
                                        style:UIAlertActionStyleCancel
@@ -975,39 +976,38 @@ static UIImage *kPointerCursor() {
         scrollView.scrollEnabled = YES;
         [self.webview setUserInteractionEnabled:YES];
         self.cursorView.hidden = YES;
-        
-        
     }
 }
 - (void)showHintsAlert
 {
     UIAlertController *alertController = [UIAlertController
-                                          alertControllerWithTitle:@"Usage Guide"
-                                          message:@"Double press the touch area to switch between cursor & scroll mode.\nPress the touch area while in cursor mode to click.\nSingle tap to Menu button to Go Back, or Exit on root page.\nSingle tap the Play/Pause button to: Go Forward, Enter URL or Reload Page.\nDouble tap the Play/Pause to show the Advanced Menu with more options."
+                                          alertControllerWithTitle:NSLocalizedString(@"Usage Guide", nil)
+                                          message:NSLocalizedString(@"Double press the touch area to switch between cursor & scroll mode.\nPress the touch area while in cursor mode to click.\nSingle tap to Menu button to Go Back, or Exit on root page.\nSingle tap the Play/Pause button to: Go Forward, Enter URL or Reload Page.\nDouble tap the Play/Pause to show the Advanced Menu with more options.", nil)
                                           preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *hideForeverAction = [UIAlertAction
-                                        actionWithTitle:@"Don't Show This Again"
+                                        actionWithTitle:NSLocalizedString(@"Don't Show This Again", nil)
                                         style:UIAlertActionStyleDestructive
                                         handler:^(UIAlertAction *action)
                                         {
-                                            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"DontShowHintsOnLaunch"];
-                                            [[NSUserDefaults standardUserDefaults] synchronize];
-                                        }];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"DontShowHintsOnLaunch"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }];
     UIAlertAction *showForeverAction = [UIAlertAction
-                                        actionWithTitle:@"Always Show On Launch"
+                                        actionWithTitle:NSLocalizedString(@"Always Show On Launch", nil)
                                         style:UIAlertActionStyleDestructive
                                         handler:^(UIAlertAction *action)
                                         {
-                                            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"DontShowHintsOnLaunch"];
-                                            [[NSUserDefaults standardUserDefaults] synchronize];
-                                        }];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"DontShowHintsOnLaunch"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }];
     UIAlertAction *cancelAction = [UIAlertAction
-                                   actionWithTitle:@"Dismiss"
+                                   actionWithTitle:NSLocalizedString(@"Dismiss", nil)
                                    style:UIAlertActionStyleCancel
                                    handler:^(UIAlertAction *action)
                                    {
-                                   }];
+    }];
+    
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"DontShowHintsOnLaunch"]) {
         [alertController addAction:showForeverAction];
     }
@@ -1078,17 +1078,17 @@ static UIImage *kPointerCursor() {
         }
         else
         {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Exit App?" message:nil preferredStyle:UIAlertControllerStyleAlert];
-            [alert addAction:[UIAlertAction actionWithTitle:@"Exit" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Exit App?", nil) message:nil preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Exit", nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
                 exit(EXIT_SUCCESS);
             }]];
-            [alert addAction:[UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleCancel handler:nil]];
+            [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Dismiss", nil) style:UIAlertActionStyleCancel handler:nil]];
             [self presentViewController:alert animated:YES completion:nil];
         }
         /*
-        else {
-            [self requestURLorSearchInput];
-        }*/
+         else {
+         [self requestURLorSearchInput];
+         }*/
         
     }
     else if (presses.anyObject.type == UIPressTypeUpArrow)
@@ -1113,7 +1113,7 @@ static UIImage *kPointerCursor() {
             // Handle the virtual cursor
             
             
-
+            
             CGPoint point = [self.view convertPoint:self.cursorView.frame.origin toView:self.webview];
             
             if(point.y < 0)
@@ -1123,7 +1123,7 @@ static UIImage *kPointerCursor() {
                 CGRect backBtnFrameExtra = self.btnImageBack.frame;
                 backBtnFrameExtra.origin.y = 0; // Enable cursor in upper right corner
                 backBtnFrameExtra.size.height = backBtnFrameExtra.size.height+ 8;// Enable cursor in upper right corner
-
+                
                 
                 if(CGRectContainsPoint(backBtnFrameExtra, point))
                 {
@@ -1145,7 +1145,7 @@ static UIImage *kPointerCursor() {
                 {
                     [self showInputURLorSearchGoogle];
                 }
-
+                
                 
                 else if(CGRectContainsPoint(self.btnImageFullScreen.frame, point))
                 {
@@ -1161,139 +1161,139 @@ static UIImage *kPointerCursor() {
                 menuBtnFrameExtra.origin.y = 0; // Enable cursor in upper right corner
                 menuBtnFrameExtra.size.width = menuBtnFrameExtra.size.width + 100; // Enable cursor in upper right corner
                 menuBtnFrameExtra.size.height = menuBtnFrameExtra.size.height+ 100;// Enable cursor in upper right corner
-
+                
                 if(CGRectContainsPoint(menuBtnFrameExtra, point))
                 {
                     // Show advanced menu:
                     [self showAdvancedMenu];
                 }
                 
-               
-
-                    
+                
+                
+                
             }
             else // Handle Press in the Browser view
             {
-            
-            int displayWidth = [[self.webview stringByEvaluatingJavaScriptFromString:@"window.innerWidth"] intValue];
-            CGFloat scale = [self.webview frame].size.width / displayWidth;
-            
-            point.x /= scale;
-            point.y /= scale;
-
-            [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.elementFromPoint(%i, %i).click()", (int)point.x, (int)point.y]];
-            // Make the UIWebView method call
-            NSString *fieldType = [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.elementFromPoint(%i, %i).type;", (int)point.x, (int)point.y]];
-            /*
-             if (fieldType == nil) {
-             NSString *contentEditible = [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.elementFromPoint(%i, %i).getAttribute('contenteditable');", (int)point.x, (int)point.y]];
-             NSLog(contentEditible);
-             if ([contentEditible isEqualToString:@"true"]) {
-             fieldType = @"text";
-             }
-             }
-             else if ([[fieldType stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString: @""]) {
-             NSString *contentEditible = [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.elementFromPoint(%i, %i).getAttribute('contenteditable');", (int)point.x, (int)point.y]];
-             NSLog(contentEditible);
-             if ([contentEditible isEqualToString:@"true"]) {
-             fieldType = @"text";
-             }
-             }
-             NSLog(fieldType);
-             */
-            fieldType = fieldType.lowercaseString;
-            if ([fieldType isEqualToString:@"date"] || [fieldType isEqualToString:@"datetime"] || [fieldType isEqualToString:@"datetime-local"] || [fieldType isEqualToString:@"email"] || [fieldType isEqualToString:@"month"] || [fieldType isEqualToString:@"number"] || [fieldType isEqualToString:@"password"] || [fieldType isEqualToString:@"search"] || [fieldType isEqualToString:@"tel"] || [fieldType isEqualToString:@"text"] || [fieldType isEqualToString:@"time"] || [fieldType isEqualToString:@"url"] || [fieldType isEqualToString:@"week"]) {
-                NSString *fieldTitle = [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.elementFromPoint(%i, %i).title;", (int)point.x, (int)point.y]];
-                if ([fieldTitle isEqualToString:@""]) {
-                    fieldTitle = fieldType;
-                }
-                NSString *placeholder = [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.elementFromPoint(%i, %i).placeholder;", (int)point.x, (int)point.y]];
-                if ([placeholder isEqualToString:@""]) {
-                    if (![fieldTitle isEqualToString:fieldType]) {
-                        placeholder = [NSString stringWithFormat:@"%@ Input", fieldTitle];
-                    }
-                    else {
-                        placeholder = @"Text Input";
-                    }
-                }
-                NSString *testedFormResponse = [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.elementFromPoint(%i, %i).form.hasAttribute('onsubmit');", (int)point.x, (int)point.y]];
-                UIAlertController *alertController = [UIAlertController
-                                                      alertControllerWithTitle:@"Input Text"
-                                                      message: [fieldTitle capitalizedString]
-                                                      preferredStyle:UIAlertControllerStyleAlert];
                 
-                [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField)
-                 {
-                     if ([fieldType isEqualToString:@"url"]) {
-                         textField.keyboardType = UIKeyboardTypeURL;
-                     }
-                     else if ([fieldType isEqualToString:@"email"]) {
-                         textField.keyboardType = UIKeyboardTypeEmailAddress;
-                     }
-                     else if ([fieldType isEqualToString:@"tel"] || [fieldType isEqualToString:@"number"] || [fieldType isEqualToString:@"date"] || [fieldType isEqualToString:@"datetime"] || [fieldType isEqualToString:@"datetime-local"]) {
-                         textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-                     }
-                     else {
-                         textField.keyboardType = UIKeyboardTypeDefault;
-                     }
-                     textField.placeholder = [placeholder capitalizedString];
-                     if ([fieldType isEqualToString:@"password"]) {
-                         textField.secureTextEntry = YES;
-                     }
-                     textField.text = [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.elementFromPoint(%i, %i).value;", (int)point.x, (int)point.y]];
-                     textField.textColor = kTextColor();
-                     [textField setReturnKeyType:UIReturnKeyDone];
-                     [textField addTarget:self
-                                   action:@selector(alertTextFieldShouldReturn:)
-                         forControlEvents:UIControlEventEditingDidEnd];
-                     
-                 }];
-                UIAlertAction *inputAndSubmitAction = [UIAlertAction
-                                                       actionWithTitle:@"Submit"
-                                                       style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction *action)
-                                                       {
-                                                           UITextField *inputViewTextField = alertController.textFields[0];
-                                                           NSString *javaScript = [NSString stringWithFormat:@"var textField = document.elementFromPoint(%i, %i);"
-                                                                                   "textField.value = '%@';"
-                                                                                   "textField.form.submit();"
-                                                                                   //"var ev = document.createEvent('KeyboardEvent');"
-                                                                                   //"ev.initKeyEvent('keydown', true, true, window, false, false, false, false, 13, 0);"
-                                                                                   //"document.body.dispatchEvent(ev);"
-                                                                                   , (int)point.x, (int)point.y, inputViewTextField.text];
-                                                           [self.webview stringByEvaluatingJavaScriptFromString:javaScript];
-                                                       }];
-                UIAlertAction *inputAction = [UIAlertAction
-                                              actionWithTitle:@"Done"
-                                              style:UIAlertActionStyleDefault
-                                              handler:^(UIAlertAction *action)
-                                              {
-                                                  UITextField *inputViewTextField = alertController.textFields[0];
-                                                  NSString *javaScript = [NSString stringWithFormat:@"var textField = document.elementFromPoint(%i, %i);"
-                                                                          "textField.value = '%@';", (int)point.x, (int)point.y, inputViewTextField.text];
-                                                  [self.webview stringByEvaluatingJavaScriptFromString:javaScript];
-                                              }];
-                UIAlertAction *cancelAction = [UIAlertAction
-                                               actionWithTitle:nil
-                                               style:UIAlertActionStyleCancel
-                                               handler:nil];
-                [alertController addAction:inputAction];
-                if (testedFormResponse != nil) {
-                    if ([testedFormResponse isEqualToString:@"true"]) {
-                        [alertController addAction:inputAndSubmitAction];
+                int displayWidth = [[self.webview stringByEvaluatingJavaScriptFromString:@"window.innerWidth"] intValue];
+                CGFloat scale = [self.webview frame].size.width / displayWidth;
+                
+                point.x /= scale;
+                point.y /= scale;
+                
+                [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.elementFromPoint(%i, %i).click()", (int)point.x, (int)point.y]];
+                // Make the UIWebView method call
+                NSString *fieldType = [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.elementFromPoint(%i, %i).type;", (int)point.x, (int)point.y]];
+                /*
+                 if (fieldType == nil) {
+                 NSString *contentEditible = [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.elementFromPoint(%i, %i).getAttribute('contenteditable');", (int)point.x, (int)point.y]];
+                 NSLog(contentEditible);
+                 if ([contentEditible isEqualToString:@"true"]) {
+                 fieldType = @"text";
+                 }
+                 }
+                 else if ([[fieldType stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString: @""]) {
+                 NSString *contentEditible = [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.elementFromPoint(%i, %i).getAttribute('contenteditable');", (int)point.x, (int)point.y]];
+                 NSLog(contentEditible);
+                 if ([contentEditible isEqualToString:@"true"]) {
+                 fieldType = @"text";
+                 }
+                 }
+                 NSLog(fieldType);
+                 */
+                fieldType = fieldType.lowercaseString;
+                if ([fieldType isEqualToString:@"date"] || [fieldType isEqualToString:@"datetime"] || [fieldType isEqualToString:@"datetime-local"] || [fieldType isEqualToString:@"email"] || [fieldType isEqualToString:@"month"] || [fieldType isEqualToString:@"number"] || [fieldType isEqualToString:@"password"] || [fieldType isEqualToString:@"search"] || [fieldType isEqualToString:@"tel"] || [fieldType isEqualToString:@"text"] || [fieldType isEqualToString:@"time"] || [fieldType isEqualToString:@"url"] || [fieldType isEqualToString:@"week"]) {
+                    NSString *fieldTitle = [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.elementFromPoint(%i, %i).title;", (int)point.x, (int)point.y]];
+                    if ([fieldTitle isEqualToString:@""]) {
+                        fieldTitle = fieldType;
+                    }
+                    NSString *placeholder = [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.elementFromPoint(%i, %i).placeholder;", (int)point.x, (int)point.y]];
+                    if ([placeholder isEqualToString:@""]) {
+                        if (![fieldTitle isEqualToString:fieldType]) {
+                            placeholder = [NSString stringWithFormat:@"%@ Input", fieldTitle];
+                        }
+                        else {
+                            placeholder = @"Text Input";
+                        }
+                    }
+                    NSString *testedFormResponse = [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.elementFromPoint(%i, %i).form.hasAttribute('onsubmit');", (int)point.x, (int)point.y]];
+                    UIAlertController *alertController = [UIAlertController
+                                                          alertControllerWithTitle:@"Input Text"
+                                                          message: [fieldTitle capitalizedString]
+                                                          preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField)
+                     {
+                        if ([fieldType isEqualToString:@"url"]) {
+                            textField.keyboardType = UIKeyboardTypeURL;
+                        }
+                        else if ([fieldType isEqualToString:@"email"]) {
+                            textField.keyboardType = UIKeyboardTypeEmailAddress;
+                        }
+                        else if ([fieldType isEqualToString:@"tel"] || [fieldType isEqualToString:@"number"] || [fieldType isEqualToString:@"date"] || [fieldType isEqualToString:@"datetime"] || [fieldType isEqualToString:@"datetime-local"]) {
+                            textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+                        }
+                        else {
+                            textField.keyboardType = UIKeyboardTypeDefault;
+                        }
+                        textField.placeholder = [placeholder capitalizedString];
+                        if ([fieldType isEqualToString:@"password"]) {
+                            textField.secureTextEntry = YES;
+                        }
+                        textField.text = [self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.elementFromPoint(%i, %i).value;", (int)point.x, (int)point.y]];
+                        textField.textColor = kTextColor();
+                        [textField setReturnKeyType:UIReturnKeyDone];
+                        [textField addTarget:self
+                                      action:@selector(alertTextFieldShouldReturn:)
+                            forControlEvents:UIControlEventEditingDidEnd];
+                        
+                    }];
+                    UIAlertAction *inputAndSubmitAction = [UIAlertAction
+                                                           actionWithTitle:@"Submit"
+                                                           style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction *action)
+                                                           {
+                        UITextField *inputViewTextField = alertController.textFields[0];
+                        NSString *javaScript = [NSString stringWithFormat:@"var textField = document.elementFromPoint(%i, %i);"
+                                                "textField.value = '%@';"
+                                                "textField.form.submit();"
+                                                //"var ev = document.createEvent('KeyboardEvent');"
+                                                //"ev.initKeyEvent('keydown', true, true, window, false, false, false, false, 13, 0);"
+                                                //"document.body.dispatchEvent(ev);"
+                                                , (int)point.x, (int)point.y, inputViewTextField.text];
+                        [self.webview stringByEvaluatingJavaScriptFromString:javaScript];
+                    }];
+                    UIAlertAction *inputAction = [UIAlertAction
+                                                  actionWithTitle:@"Done"
+                                                  style:UIAlertActionStyleDefault
+                                                  handler:^(UIAlertAction *action)
+                                                  {
+                        UITextField *inputViewTextField = alertController.textFields[0];
+                        NSString *javaScript = [NSString stringWithFormat:@"var textField = document.elementFromPoint(%i, %i);"
+                                                "textField.value = '%@';", (int)point.x, (int)point.y, inputViewTextField.text];
+                        [self.webview stringByEvaluatingJavaScriptFromString:javaScript];
+                    }];
+                    UIAlertAction *cancelAction = [UIAlertAction
+                                                   actionWithTitle:nil
+                                                   style:UIAlertActionStyleCancel
+                                                   handler:nil];
+                    [alertController addAction:inputAction];
+                    if (testedFormResponse != nil) {
+                        if ([testedFormResponse isEqualToString:@"true"]) {
+                            [alertController addAction:inputAndSubmitAction];
+                        }
+                    }
+                    [alertController addAction:cancelAction];
+                    [self presentViewController:alertController animated:YES completion:nil];
+                    UITextField *inputViewTextField = alertController.textFields[0];
+                    if ([[inputViewTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""]) {
+                        [inputViewTextField becomeFirstResponder];
                     }
                 }
-                [alertController addAction:cancelAction];
-                [self presentViewController:alertController animated:YES completion:nil];
-                UITextField *inputViewTextField = alertController.textFields[0];
-                if ([[inputViewTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""]) {
-                    [inputViewTextField becomeFirstResponder];
+                else {
+                    //[self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.elementFromPoint(%i, %i).click()", (int)point.x, (int)point.y]];
                 }
-            }
-            else {
-                //[self.webview stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"document.elementFromPoint(%i, %i).click()", (int)point.x, (int)point.y]];
-            }
-            //[self toggleMode];
+                //[self toggleMode];
                 
             }
         }

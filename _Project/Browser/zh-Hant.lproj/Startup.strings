@@ -1,0 +1,9 @@
+
+/* Class = "UIButton"; normalTitle = "Search"; ObjectID = "A8y-5r-g11"; */
+"A8y-5r-g11.normalTitle" = "搜索";
+
+/* Class = "UILabel"; text = "AppName:"; ObjectID = "Ppf-Ee-aer"; */
+"Ppf-Ee-aer.text" = "應用ID:";
+
+/* Class = "UITextField"; placeholder = "Input App Name for search..."; ObjectID = "xb3-N6-mqM"; */
+"xb3-N6-mqM.placeholder" = "輸入應用ID號進行評論搜索...";

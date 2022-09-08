@@ -1,0 +1,52 @@
+/* 
+  Localizable.strings
+  BananaATVBrowser
+
+  Created by 花心胡萝卜 on 9/7/22.
+  Copyright © 2022 High Caffeine Content. All rights reserved.
+*/
+"Usage Guide" = "使用說明";
+"Double press the touch area to switch between cursor & scroll mode.\nPress the touch area while in cursor mode to click.\nSingle tap to Menu button to Go Back, or Exit on root page.\nSingle tap the Play/Pause button to: Go Forward, Enter URL or Reload Page.\nDouble tap the Play/Pause to show the Advanced Menu with more options." = "雙擊觸摸區域可在廣播和滾動模式之間切換。\n在廣播模式下按觸摸區域可單擊。\n點擊“菜單”按鈕可返回，或退出主頁面。\n單擊“播放/暫停”按鈕可以進入菜單：前進、輸入 URL 或重新加載頁面。\n雙擊播放/暫停以顯示包含更多選項的高級菜單。";
+"Don't Show This Again" = "別在給朕啟奏了!";
+"Always Show On Launch" = "啟動時始終顯示";
+"Dismiss" = "朕知道了, 退下吧";
+"Advanced Menu" = "高級功能";
+"Hide Top Navigation bar" = "給朕把導航欄打入大牢";
+"Show Top Navigation bar" = "給朕把導航欄放出來";
+"Go To Home Page" = "起駕, 去主頁玩玩";
+"Set Current Page As Home Page" = "來人啊, 給朕把當前這個小頁面設置成主頁";
+"Favorites" = "朕的秘密花園";
+"Delete a Favorite" = "從朕的秘密花園滾出去";
+"Select a Favorite to Delete" = "選一個小頁面從朕的秘密花園滾出去";
+"Add Current Page to Favorites" = "來, 把當前的小頁面收入朕的秘密花園";
+"Name New Favorite" = "給秘密花園重新賜名";
+"Save" = "給朕存起來";
+"History" = "朕的足跡";
+"Clear History" = "來人, 把朕的足跡打掃乾淨";
+"Switch To Mobile Mode" = "來人, 給朕切換到手機模式";
+"Switch To Desktop Mode" = "來人, 給朕切換到電腦模式";
+"Scale Pages to Fit" = "來人啊, 打這個頁面一頓讓他縮放的正好大小";
+"Stop Scaling Pages to Fit" = "好了, 不要打這個頁面了, 讓他恢復自己的大小";
+"Increase Font Size" = "來人, 賜山珍海味讓它字體變大一點";
+"Decrease Font Size" = "來人, 揍他三十大板讓它字體變小一點";
+"Clear Cache" = "來人, 揍他一頓讓他把緩存清理乾淨";
+"Clear Cookies" = "來人, 揍他一頓讓他把Cookies清理乾淨";
+"Enter URL or Search Terms" = "輸入網址, 或者進行搜索";
+"Go To Website" = "給朕訪問這個網址";
+"Search Google" = "給朕從谷歌上進行通緝";
+"Quick Menu" = "快捷菜單";
+"Go Forward" = "前進";
+"Reload Page" = "刷新";
+"Input URL or Search with Google" = "輸入網址, 或者進行搜索";
+"Could Not Load Webpage" = "啟奏陛下, 不能加載這個頁面";
+"Google This Page" = "給朕從谷歌上通緝這個東西";
+"Enter a URL or Search" = "輸入網址, 或者進行搜索";
+"Exit App?" = "退朝?";
+"Exit" = "退朝";
+"Lock Browser" = "鎖定瀏覽器功能";
+
+"Info" = "啟奏陛下";
+"OK" = "朕知道了";
+"Please Input the AppID!" = "請輸入AppID!";
+" Loading ..." = " 加載中 ...";
+"%@ said:\n%@\n\nRate:%@\n----------------------------------------------" = "%@ 說:\n%@\n評分:%@\n----------------------------------------------";

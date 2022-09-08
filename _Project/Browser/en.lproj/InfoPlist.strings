@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  BananaATVBrowser
+
+  Created by 花心胡萝卜 on 9/7/22.
+  Copyright © 2022 High Caffeine Content. All rights reserved.
+*/
+// Localizable App Name是App在英语环境环境下显示的名称
+CFBundleDisplayName = "Banana ATV Browser";
