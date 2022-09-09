@@ -8,19 +8,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Choose Navigation Controller-->
         <scene sceneID="YVh-q5-F6U">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m75-OR-zyZ" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m75-OR-zyZ" customClass="UIChooseNavigationController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="svj-vN-R4V">
                         <rect key="frame" x="0.0" y="60" width="1920" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Xgj-up-wSf" kind="relationship" relationship="rootViewController" id="KT1-gD-EUd"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zix-KM-Grg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -29,7 +26,7 @@
         <!--Startup View Controller-->
         <scene sceneID="9lE-WX-96o">
             <objects>
-                <viewController storyboardIdentifier="browserView" id="Xgj-up-wSf" customClass="StartupViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="startupView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Xgj-up-wSf" customClass="StartupViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aTn-mJ-5lt"/>
                         <viewControllerLayoutGuide type="bottom" id="BrO-eL-FPV"/>

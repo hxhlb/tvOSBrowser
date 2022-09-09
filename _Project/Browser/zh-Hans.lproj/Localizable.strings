@@ -44,6 +44,8 @@
 "Exit App?" = "退朝?";
 "Exit" = "退朝";
 "Lock Browser" = "锁定浏览器功能";
+"Open PDF" = "给朕打开PDF文件";
+"Open PDF Fail!" = "打开PDF文件失败了!";
 
 "Info" = "启奏陛下";
 "OK" = "朕知道了";

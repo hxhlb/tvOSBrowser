@@ -759,6 +759,38 @@ static UIImage *kPointerCursor() {
         }
     }];
     
+    UIAlertAction *pdfAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"Open PDF", nil)
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action)
+                                   {
+        UITextField *urltextfield = alertController2.textFields[0];
+        NSString *toMod = urltextfield.text;
+        if (![toMod isEqualToString:@""]) {
+            NSString *realUrl;
+            if ([toMod containsString:@"http://"] || [toMod containsString:@"https://"]) {
+                realUrl = [NSString stringWithFormat:@"%@", toMod];
+            }
+            else {
+                realUrl = [NSString stringWithFormat:@"http://%@", toMod];
+            }
+            
+            [[NSUserDefaults standardUserDefaults] setObject:realUrl forKey:@"pdfUrl"];
+            
+            // TODO: 打开PDF页面
+            //获取storyboard: 通过bundle根据storyboard的名字来获取我们的storyboard,
+            UIStoryboard *story = [UIStoryboard storyboardWithName:@"PdfViewer" bundle:[NSBundle mainBundle]];
+            //由storyboard根据myView的storyBoardID来获取我们要切换的视图
+            UIViewController *pdfViewer = [story instantiateViewControllerWithIdentifier:@"pdfViewer"];
+            // 设置主显示
+            //[self.view.window setRootViewController:pdfViewer];
+            [self.navigationController pushViewController:pdfViewer animated:YES];
+        }
+        else {
+            [self requestURLorSearchInput];
+        }
+    }];
+    
     UIAlertAction *cancelAction = [UIAlertAction
                                    actionWithTitle:nil
                                    style:UIAlertActionStyleCancel
@@ -766,6 +798,7 @@ static UIImage *kPointerCursor() {
     
     [alertController2 addAction:searchAction];
     [alertController2 addAction:goAction];
+    [alertController2 addAction:pdfAction];
     [alertController2 addAction:cancelAction];
     
     [self presentViewController:alertController2 animated:YES completion:nil];
@@ -1373,9 +1406,6 @@ static UIImage *kPointerCursor() {
         // We only use one touch, break the loop
         break;
     }
-    
 }
-
-
 
 @end

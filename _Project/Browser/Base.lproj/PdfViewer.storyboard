@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="19529" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="appleTV" appearance="light"/>
+    <dependencies>
+        <deployment identifier="tvOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="9lE-WX-96o">
+            <objects>
+                <viewController storyboardIdentifier="pdfViewer" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Xgj-up-wSf" customClass="PDFViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aTn-mJ-5lt"/>
+                        <viewControllerLayoutGuide type="bottom" id="BrO-eL-FPV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Oo6-ab-TCE">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qcx-wz-Leu">
+                                <rect key="frame" x="96" y="68" width="1728" height="944"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="NNa-BH-8Lz"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="LFE-1U-cKP"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Rbh-h3-eDf"/>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="qcx-wz-Leu" id="VY9-Qr-erF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7uX-ET-Cqw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-51" y="-81"/>
+        </scene>
+    </scenes>
+</document>

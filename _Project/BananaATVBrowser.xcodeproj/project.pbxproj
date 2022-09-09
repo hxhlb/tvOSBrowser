@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		07CDCF2CD694DFE57569E46D /* libPods-BananaATVBrowser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B394F45F9187333C07E17191 /* libPods-BananaATVBrowser.a */; };
+		28021ABA28CACDF500C25E62 /* PdfViewer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28021AB828CACDF500C25E62 /* PdfViewer.storyboard */; };
+		28021ABD28CACEC400C25E62 /* PDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28021ABC28CACEC400C25E62 /* PDFViewController.m */; };
 		286CE1F328C8721400068263 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 286CE1F528C8721400068263 /* InfoPlist.strings */; };
 		286CE1FB28C8750B00068263 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 286CE1FD28C8750B00068263 /* Localizable.strings */; };
 		286CE20428C8CB4600068263 /* Startup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 286CE20628C8CB4600068263 /* Startup.storyboard */; };
 		286CE21228C8D00400068263 /* StartupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 286CE21128C8D00400068263 /* StartupViewController.m */; };
+		28C6022A28CAF4AF006A70D1 /* UIChooseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C6022928CAF4AF006A70D1 /* UIChooseNavigationController.m */; };
 		3A2A7C1621E7805D0083CB13 /* go-back-left-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A2A7C1121E7805D0083CB13 /* go-back-left-arrow.png */; };
 		3A2A7C1721E7805D0083CB13 /* house-outline.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A2A7C1221E7805D0083CB13 /* house-outline.png */; };
 		3A2A7C1821E7805D0083CB13 /* right-arrow-forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A2A7C1321E7805D0083CB13 /* right-arrow-forward.png */; };
@@ -30,6 +33,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		28021AB928CACDF500C25E62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PdfViewer.storyboard; sourceTree = "<group>"; };
+		28021ABB28CACEC400C25E62 /* PDFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDFViewController.h; sourceTree = "<group>"; };
+		28021ABC28CACEC400C25E62 /* PDFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFViewController.m; sourceTree = "<group>"; };
+		28021ABF28CAD72200C25E62 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PdfViewer.strings"; sourceTree = "<group>"; };
+		28021AC128CAD72400C25E62 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/PdfViewer.strings"; sourceTree = "<group>"; };
+		28021AC328CAD72600C25E62 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PdfViewer.strings; sourceTree = "<group>"; };
 		286CE1EF28C86FE000068263 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		286CE1F028C86FE700068263 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		286CE1F428C8721400068263 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -45,6 +54,8 @@
 		286CE20F28C8CBA300068263 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Startup.strings"; sourceTree = "<group>"; };
 		286CE21028C8D00400068263 /* StartupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartupViewController.h; sourceTree = "<group>"; };
 		286CE21128C8D00400068263 /* StartupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartupViewController.m; sourceTree = "<group>"; };
+		28C6022828CAF4AF006A70D1 /* UIChooseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIChooseNavigationController.h; sourceTree = "<group>"; };
+		28C6022928CAF4AF006A70D1 /* UIChooseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIChooseNavigationController.m; sourceTree = "<group>"; };
 		3A2A7C1121E7805D0083CB13 /* go-back-left-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "go-back-left-arrow.png"; sourceTree = "<group>"; };
 		3A2A7C1221E7805D0083CB13 /* house-outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "house-outline.png"; sourceTree = "<group>"; };
 		3A2A7C1321E7805D0083CB13 /* right-arrow-forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right-arrow-forward.png"; sourceTree = "<group>"; };
@@ -145,6 +156,10 @@
 				B002B8691BAE420500C744AF /* AppDelegate.m */,
 				B002B86B1BAE420500C744AF /* ViewController.h */,
 				286CE21028C8D00400068263 /* StartupViewController.h */,
+				28021ABB28CACEC400C25E62 /* PDFViewController.h */,
+				28021ABC28CACEC400C25E62 /* PDFViewController.m */,
+				28C6022828CAF4AF006A70D1 /* UIChooseNavigationController.h */,
+				28C6022928CAF4AF006A70D1 /* UIChooseNavigationController.m */,
 				286CE21128C8D00400068263 /* StartupViewController.m */,
 				B002B86C1BAE420500C744AF /* ViewController.m */,
 				3A2A7C0621E77E2C0083CB13 /* MenuIcons */,
@@ -158,6 +173,7 @@
 			children = (
 				B002B8661BAE420500C744AF /* main.m */,
 				B002B86E1BAE420500C744AF /* Main.storyboard */,
+				28021AB828CACDF500C25E62 /* PdfViewer.storyboard */,
 				286CE20628C8CB4600068263 /* Startup.storyboard */,
 				B002B8711BAE420500C744AF /* Assets.xcassets */,
 				B002B8731BAE420500C744AF /* Info.plist */,
@@ -240,6 +256,7 @@
 				3A2A7C1E21E7842F0083CB13 /* menu-2.png in Resources */,
 				3A2A7C1621E7805D0083CB13 /* go-back-left-arrow.png in Resources */,
 				286CE20428C8CB4600068263 /* Startup.storyboard in Resources */,
+				28021ABA28CACDF500C25E62 /* PdfViewer.storyboard in Resources */,
 				3A2A7C1921E7805D0083CB13 /* refresh-button.png in Resources */,
 				3A2A7C1A21E7805E0083CB13 /* maximize-2.png in Resources */,
 				286CE1F328C8721400068263 /* InfoPlist.strings in Resources */,
@@ -310,8 +327,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28C6022A28CAF4AF006A70D1 /* UIChooseNavigationController.m in Sources */,
 				B002B86D1BAE420500C744AF /* ViewController.m in Sources */,
 				286CE21228C8D00400068263 /* StartupViewController.m in Sources */,
+				28021ABD28CACEC400C25E62 /* PDFViewController.m in Sources */,
 				B002B86A1BAE420500C744AF /* AppDelegate.m in Sources */,
 				B002B8671BAE420500C744AF /* main.m in Sources */,
 			);
@@ -320,6 +339,17 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		28021AB828CACDF500C25E62 /* PdfViewer.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				28021AB928CACDF500C25E62 /* Base */,
+				28021ABF28CAD72200C25E62 /* zh-Hans */,
+				28021AC128CAD72400C25E62 /* zh-Hant */,
+				28021AC328CAD72600C25E62 /* en */,
+			);
+			name = PdfViewer.storyboard;
+			sourceTree = "<group>";
+		};
 		286CE1F528C8721400068263 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -26,11 +26,7 @@
     //self.subView.panGestureRecognizer.allowedTouchTypes = @[ @(UITouchTypeIndirect) ];
     self.subView.panGestureRecognizer.allowedTouchTypes = @[ [NSNumber numberWithInt:UITouchTypeIndirect] ];
     self.subViewDisplay.backgroundColor = UIColor.lightGrayColor;
-//    self.subView.setNeedsFocusUpdate();
-    // 检查配置值
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"unlockerBrowser"]) {
-        [self showBrowser];
-    }
+    //    self.subView.setNeedsFocusUpdate();
 }
 
 - (void)didReceiveMemoryWarning {
@@ -286,7 +282,8 @@
     //由storyboard根据myView的storyBoardID来获取我们要切换的视图
     UIViewController *browserView = [story instantiateViewControllerWithIdentifier:@"browserView"];
     //由navigationController推向我们要推向的view
-    [self.navigationController pushViewController:browserView animated:YES];
+    //[self.navigationController pushViewController:browserView animated:YES];
+    [self.view.window setRootViewController:browserView];
 }
 
 @end
