@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,9 @@
 		286CE1FB28C8750B00068263 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 286CE1FD28C8750B00068263 /* Localizable.strings */; };
 		286CE20428C8CB4600068263 /* Startup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 286CE20628C8CB4600068263 /* Startup.storyboard */; };
 		286CE21228C8D00400068263 /* StartupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 286CE21128C8D00400068263 /* StartupViewController.m */; };
+		289F88E028D1A2ED005FE88B /* VLCPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 289F88DF28D1A2ED005FE88B /* VLCPlayer.storyboard */; };
+		289F88E328D1AB37005FE88B /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289F88E228D1AB37005FE88B /* PlayerViewController.m */; };
+		289F88E828D1B027005FE88B /* TVVLCKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 289F88E428D1AD13005FE88B /* TVVLCKit.xcframework */; };
 		28C6022A28CAF4AF006A70D1 /* UIChooseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C6022928CAF4AF006A70D1 /* UIChooseNavigationController.m */; };
 		3A2A7C1621E7805D0083CB13 /* go-back-left-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A2A7C1121E7805D0083CB13 /* go-back-left-arrow.png */; };
 		3A2A7C1721E7805D0083CB13 /* house-outline.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A2A7C1221E7805D0083CB13 /* house-outline.png */; };
@@ -54,6 +57,10 @@
 		286CE20F28C8CBA300068263 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Startup.strings"; sourceTree = "<group>"; };
 		286CE21028C8D00400068263 /* StartupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartupViewController.h; sourceTree = "<group>"; };
 		286CE21128C8D00400068263 /* StartupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartupViewController.m; sourceTree = "<group>"; };
+		289F88DF28D1A2ED005FE88B /* VLCPlayer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VLCPlayer.storyboard; sourceTree = "<group>"; };
+		289F88E128D1AB37005FE88B /* PlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
+		289F88E228D1AB37005FE88B /* PlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
+		289F88E428D1AD13005FE88B /* TVVLCKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = TVVLCKit.xcframework; path = Pods/TVVLCKit/TVVLCKit.xcframework; sourceTree = "<group>"; };
 		28C6022828CAF4AF006A70D1 /* UIChooseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIChooseNavigationController.h; sourceTree = "<group>"; };
 		28C6022928CAF4AF006A70D1 /* UIChooseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIChooseNavigationController.m; sourceTree = "<group>"; };
 		3A2A7C1121E7805D0083CB13 /* go-back-left-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "go-back-left-arrow.png"; sourceTree = "<group>"; };
@@ -88,6 +95,7 @@
 			files = (
 				9675E1FF20857AEF00A4A84A /* UIKit.framework in Frameworks */,
 				9675E1FC20855F6500A4A84A /* Foundation.framework in Frameworks */,
+				289F88E828D1B027005FE88B /* TVVLCKit.xcframework in Frameworks */,
 				07CDCF2CD694DFE57569E46D /* libPods-BananaATVBrowser.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,6 +131,7 @@
 		9675E1FA20855F6500A4A84A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				289F88E428D1AD13005FE88B /* TVVLCKit.xcframework */,
 				9675E1FE20857AEF00A4A84A /* UIKit.framework */,
 				9675E1FB20855F6500A4A84A /* Foundation.framework */,
 				B394F45F9187333C07E17191 /* libPods-BananaATVBrowser.a */,
@@ -162,6 +171,8 @@
 				28C6022928CAF4AF006A70D1 /* UIChooseNavigationController.m */,
 				286CE21128C8D00400068263 /* StartupViewController.m */,
 				B002B86C1BAE420500C744AF /* ViewController.m */,
+				289F88E128D1AB37005FE88B /* PlayerViewController.h */,
+				289F88E228D1AB37005FE88B /* PlayerViewController.m */,
 				3A2A7C0621E77E2C0083CB13 /* MenuIcons */,
 				B002B8651BAE420500C744AF /* Supporting Files */,
 			);
@@ -179,6 +190,7 @@
 				B002B8731BAE420500C744AF /* Info.plist */,
 				286CE1FD28C8750B00068263 /* Localizable.strings */,
 				286CE1F528C8721400068263 /* InfoPlist.strings */,
+				289F88DF28D1A2ED005FE88B /* VLCPlayer.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -196,6 +208,7 @@
 				B002B8601BAE420500C744AF /* Resources */,
 				9693F8451BF5A99E00077BAB /* ShellScript */,
 				67E5058A997F4CA1B144A2F9 /* [CP] Copy Pods Resources */,
+				EE183A7F25176031724D38DF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -212,7 +225,7 @@
 		B002B85A1BAE420500C744AF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1320;
 				ORGANIZATIONNAME = "High Caffeine Content";
 				TargetAttributes = {
 					B002B8611BAE420500C744AF = {
@@ -223,10 +236,9 @@
 			};
 			buildConfigurationList = B002B85D1BAE420500C744AF /* Build configuration list for PBXProject "BananaATVBrowser" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 				"zh-Hans",
@@ -259,6 +271,7 @@
 				28021ABA28CACDF500C25E62 /* PdfViewer.storyboard in Resources */,
 				3A2A7C1921E7805D0083CB13 /* refresh-button.png in Resources */,
 				3A2A7C1A21E7805E0083CB13 /* maximize-2.png in Resources */,
+				289F88E028D1A2ED005FE88B /* VLCPlayer.storyboard in Resources */,
 				286CE1F328C8721400068263 /* InfoPlist.strings in Resources */,
 				3A2A7C1721E7805D0083CB13 /* house-outline.png in Resources */,
 			);
@@ -320,6 +333,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EE183A7F25176031724D38DF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BananaATVBrowser/Pods-BananaATVBrowser-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TVVLCKit/TVVLCKit.framework/TVVLCKit",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TVVLCKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BananaATVBrowser/Pods-BananaATVBrowser-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -333,6 +364,7 @@
 				28021ABD28CACEC400C25E62 /* PDFViewController.m in Sources */,
 				B002B86A1BAE420500C744AF /* AppDelegate.m in Sources */,
 				B002B8671BAE420500C744AF /* main.m in Sources */,
+				289F88E328D1AB37005FE88B /* PlayerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +431,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -417,6 +450,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -444,7 +478,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Debug;
 		};
@@ -452,6 +486,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -470,6 +505,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -491,7 +527,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -500,7 +536,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8FE96504ACDD3DF1D417A616 /* Pods-BananaATVBrowser.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -510,7 +545,10 @@
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Browser/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = tv.bananayellow.tvbrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
@@ -522,7 +560,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 812941A6833A02BC6BF134AE /* Pods-BananaATVBrowser.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -532,7 +569,10 @@
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Browser/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = tv.bananayellow.tvbrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;

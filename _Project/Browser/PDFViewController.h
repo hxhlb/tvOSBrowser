@@ -12,24 +12,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PDFViewController : UIViewController
 
-@property (nonatomic, strong) IBOutlet UIScrollView* scrollView;
+@property(nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
 
 
 // MARK: PDF相关功能
-- (CGPDFDocumentRef)openPDFLocal:(NSString *)pdfURL;
+- (CGPDFDocumentRef) openPDFLocal: (NSString *) pdfURL;
 
-- (CGPDFDocumentRef)openPDFURL:(NSString *)pdfURL;
+- (CGPDFDocumentRef) openPDFURL: (NSString *) pdfURL;
 
-- (CGPDFDocumentRef)openPDF:(NSURL *)NSUrl;
+- (CGPDFDocumentRef) openPDF: (NSURL *) NSUrl;
 
-- (void)drawDocument:(CGPDFDocumentRef)pdfDocument;
+- (void) drawDocument: (CGPDFDocumentRef) pdfDocument;
 
-- (void)addImagesToScrollView:(NSMutableArray *)imageArray;
+- (void) addImagesToScrollView: (NSMutableArray *) imageArray;
 
-- (void)downloadFile:(NSString *) dwUrl;
+- (void) downloadFile: (NSString *) dwUrl;
 
-- (void)showToast:(NSString *) msg  title:(NSString*)title;
+- (void) showToast: (NSString *) msg  title: (NSString *) title;
 
 
 @end

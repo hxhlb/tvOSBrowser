@@ -4,4 +4,6 @@
 target 'BananaATVBrowser' do
   #pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
   pod 'SVProgressHUD'
+  pod 'TVVLCKit'
+  #pod "TVVLCPlayer", :git => "https://github.com/kodlian/TVVLCPlayer.git", :tag => "1.1.1"
 end

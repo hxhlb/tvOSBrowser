@@ -11,19 +11,21 @@
 
 @interface ViewController : GCEventViewController
 
-@property (nonatomic, retain) IBOutlet UIVisualEffectView *topMenuView;
-@property (nonatomic, retain) IBOutlet UIView *browserContainerView;
+@property(nonatomic, retain) IBOutlet UIVisualEffectView *topMenuView;
+@property(nonatomic, retain) IBOutlet UIView *browserContainerView;
 
-@property (nonatomic, retain) IBOutlet UIImageView *btnImageBack;
-@property (nonatomic, retain) IBOutlet UIImageView *btnImageForward;
-@property (nonatomic, retain) IBOutlet UIImageView *btnImageRefresh;
-@property (nonatomic, retain) IBOutlet UIImageView *btnImageHome;
-@property (nonatomic, retain) IBOutlet UIImageView *btnImageFullScreen;
-@property (nonatomic, retain) IBOutlet UIImageView *btnImgMenu;
-@property (nonatomic, retain) IBOutlet UILabel     *lblUrlBar;
+@property(nonatomic, retain) IBOutlet UIImageView *btnImageBack;
+@property(nonatomic, retain) IBOutlet UIImageView *btnImageForward;
+@property(nonatomic, retain) IBOutlet UIImageView *btnImageRefresh;
+@property(nonatomic, retain) IBOutlet UIImageView *btnImageHome;
+@property(nonatomic, retain) IBOutlet UIImageView *btnImageFullScreen;
+@property(nonatomic, retain) IBOutlet UIImageView *btnImgMenu;
+@property(nonatomic, retain) IBOutlet UILabel     *lblUrlBar;
 
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *loadingSpinner;
+@property(nonatomic, retain) IBOutlet UIActivityIndicatorView *loadingSpinner;
 
+#pragma mark 判断是否是空字符串
+- (BOOL) isBlankString: (NSString *) val;
 
 @end
 
